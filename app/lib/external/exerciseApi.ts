@@ -3,13 +3,7 @@
 
 import axios from "axios";
 
-/**
- * Base axios instance for ExerciseDB.
- * Docs: https://www.exercisedb.dev/docs
- *
- * Uses the public demo key by default ("exercisedb").
- * If you want, you can override with NEXT_PUBLIC_EXERCISEDB_KEY.
- */
+
 const api = axios.create({
   baseURL: "https://www.exercisedb.dev/api/v1",
   headers: {
@@ -17,7 +11,7 @@ const api = axios.create({
   },
 });
 
-// Very light type – fields are optional because API may evolve
+
 export type ExternalExercise = {
   id?: string | number;
   name?: string;
@@ -29,7 +23,7 @@ export type ExternalExercise = {
   [key: string]: any;
 };
 
-/** Small helper to safely extract an array of exercises from API responses */
+
 function extractList(res: any): ExternalExercise[] {
   const data = res?.data;
   if (Array.isArray(data)) return data as ExternalExercise[];
@@ -39,7 +33,7 @@ function extractList(res: any): ExternalExercise[] {
   return [];
 }
 
-/** Safely extract a single exercise object */
+
 function extractSingle(res: any): ExternalExercise {
   const data = res?.data;
   if (data?.exercise) return data.exercise as ExternalExercise;
@@ -47,10 +41,7 @@ function extractSingle(res: any): ExternalExercise {
   return (data as ExternalExercise) ?? {};
 }
 
-/**
- * SEARCH by text query (name / description etc.)
- * GET /api/v1/exercises/search?q=...
- */
+
 export const searchExercises = async (query: string): Promise<ExternalExercise[]> => {
   if (!query.trim()) return [];
   const res = await api.get("/exercises/search", {
@@ -64,22 +55,13 @@ export const searchExercises = async (query: string): Promise<ExternalExercise[]
   return extractList(res);
 };
 
-/**
- * GET exercise details by ExerciseDB ID
- * GET /api/v1/exercises/{exerciseId}
- */
+
 export const getExerciseDetails = async (id: string | number): Promise<ExternalExercise> => {
   const res = await api.get(`/exercises/${id}`);
   return extractSingle(res);
 };
 
-/**
- * Get exercises for a specific muscle group to show on the home page.
- * GET /api/v1/muscles/{muscleName}/exercises
- *
- * Example muscle names that should work:
- * "chest", "upper legs", "lower legs", "waist", "back", "shoulders"
- */
+
 export const getExercisesByMuscle = async (
   muscleName: string,
   limit = 6

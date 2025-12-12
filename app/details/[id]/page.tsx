@@ -22,11 +22,11 @@ export default function DetailsPage() {
 
   useEffect(() => {
     const load = async () => {
-      // 1️⃣ Load exercise details
+      // 1 Load exercise details
       const ex = await getExerciseDetails(exerciseId);
       setExercise(ex);
 
-      // 2️⃣ Check if saved (only if logged in)
+      // 2 Check if saved (only if logged in)
       if (user) {
         const saved = await getSavedByUser(user._id);
         const exists = saved.some(

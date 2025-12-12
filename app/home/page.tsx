@@ -75,14 +75,13 @@ export default function HomePage() {
   useEffect(() => {
   const loadUserAndSaved = async () => {
     try {
-      // 1. Get logged-in user
+
       const u = await profile();
       setUser(u);
 
-      // 2. Get saved records (userId + exerciseId)
       const savedRecords: SavedRecord[] = await getSavedByUser(u._id);
 
-      // 3. Fetch full exercise details for each saved exercise
+
       const fullExercises: ExternalExercise[] = [];
 
       for (const record of savedRecords) {
@@ -90,12 +89,12 @@ export default function HomePage() {
           const exercise = await getExerciseDetails(record.exerciseId);
           fullExercises.push(exercise);
         } catch {
-          // If one exercise fails, skip it safely
+
           console.warn("Failed to load exercise", record.exerciseId);
         }
       }
 
-      // 4. Save hydrated exercises for UI
+
       setSaved(fullExercises);
 
     } catch {
@@ -108,7 +107,7 @@ export default function HomePage() {
 }, []);
 
 
-  // Load category sections from ExerciseDB
+
   useEffect(() => {
   const loadSections = async () => {
     setLoadingSections(true);
@@ -116,7 +115,7 @@ export default function HomePage() {
     try {
       const result: Record<string, ExternalExercise[]> = {};
 
-      // Go section by section (Chest, Back, etc.)
+
       for (const section of HOME_SECTIONS) {
         const exercises = await getExercisesByMuscle(section.value, 6);
         result[section.title] = exercises;
@@ -138,7 +137,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Hero */}
+
       <section className="text-center py-14">
         <h1 className="text-5xl font-extrabold text-gray-900 mb-3">
           Let’s Get Fit 💪
@@ -156,7 +155,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Search bar */}
+
       <section className="max-w-xl mx-auto px-6 mt-4 mb-8">
         <form
           className="flex items-center gap-3"
@@ -212,7 +211,7 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Category sections from ExerciseDB */}
+
       <section className="max-w-6xl mx-auto px-6 pb-16">
         {HOME_SECTIONS.map((section) => (
           <div key={section.title} className="mt-12">
@@ -240,7 +239,7 @@ export default function HomePage() {
   );
 }
 
-/** Card for saved exercise – just shows a button linking to details */
+/** Card for saved exercise */
 function SavedCard({ exercise }: { exercise: ExternalExercise }) {
   return (
     <div className="bg-white rounded-xl shadow-md border overflow-hidden flex flex-col">
@@ -272,7 +271,7 @@ function SavedCard({ exercise }: { exercise: ExternalExercise }) {
 }
 
 
-/** Generic card used for category sections */
+
 function ExerciseCard({ exercise }: { exercise: ExternalExercise }) {
   const id = exercise.exerciseId ?? "";
   return (
