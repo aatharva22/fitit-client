@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-export const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER ?? "https://fitit-backend.onrender.com";
+export const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER 
 // export const HTTP_SERVER =  "http://localhost:4000"
 const api = axios.create({
   baseURL: HTTP_SERVER,

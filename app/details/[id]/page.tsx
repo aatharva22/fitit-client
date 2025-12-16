@@ -78,7 +78,7 @@ export default function DetailsPage() {
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
 
-        <h1 className="text-4xl font-bold capitalize mb-4">
+        <h1 className="text-4xl font-bold capitalize mb-4 text-blue-900">
           {exercise.name}
         </h1>
 
@@ -99,7 +99,7 @@ export default function DetailsPage() {
         </div>
 
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-3">How to Perform</h2>
+          <h2 className="text-2xl font-semibold mb-3 text-black">How to Perform</h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             {exercise.instructions.map((step: string, i: number) => (
               <li key={i}>{step}</li>

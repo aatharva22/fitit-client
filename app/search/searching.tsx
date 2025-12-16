@@ -38,7 +38,7 @@ export default function SearchClient() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10">
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-3xl font-bold mb-6 text-black ">
         Results for &quot;{query}&quot;
       </h1>
 
@@ -50,8 +50,8 @@ export default function SearchClient() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {results.map((exercise) => (
             <div key={exercise.exerciseId} className="bg-white p-4 rounded shadow">
-              <h3 className="font-semibold">{exercise.name}</h3>
-              <Link
+              <h3 className="font-semibold text-black">{exercise.name}</h3>
+              <Link 
                 href={`/details/${exercise.exerciseId}`}
                 className="text-blue-600 underline"
               >

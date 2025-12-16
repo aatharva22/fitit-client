@@ -137,6 +137,8 @@ export default function AdminUsersPage() {
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
+                  <option value="admin">Trainer</option>
+
                 </select>
               </td>
               <td className="p-2">

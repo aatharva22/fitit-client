@@ -55,10 +55,6 @@ const HOME_SECTIONS = [
     title: "Cardio",
     type: "equipment",
     value: "cardiovascular system",
-  },{
-    title: "Shins",
-    type: "muscle",
-    value: "shins",
   }
 ];
 
@@ -166,7 +162,7 @@ export default function HomePage() {
             type="text"
             name="query"
             placeholder="Search exercises (e.g., push-up, squat, chest)…"
-            className="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             required
           />
 
